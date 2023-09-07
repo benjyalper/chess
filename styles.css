@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+    color: #711616;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    height: 40rem;
+    width: 40rem;
+    margin: 0 auto; /* Center the board horizontally */
+    border: 2px solid black;
+}
+
+.checker {
+    height: 100%; /* Ensure that each square takes up the full height */
+    width: 100%; /* Ensure that each square takes up the full width */
+}
+
+.flecker {
+    height: 100%; /* Ensure that each square takes up the full height */
+    width: 100%; /* Ensure that each square takes up the full width */
+}
+
+.checker:nth-child(odd)  {
+    background-color: #711616; /* Dark color for odd squares */
+}
+
+.checker:nth-child(even) {
+    background-color: #f0f0f0; /* Light color for even squares */
+}
+
+.flecker:nth-child(even)  {
+    background-color: #711616; /* Dark color for odd squares */
+}
+
+.flecker:nth-child(odd) {
+    background-color: #f0f0f0; /* Light color for even squares */
+}
