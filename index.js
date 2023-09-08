@@ -1,0 +1,1 @@
+$('img').css('background-color', '#711616');

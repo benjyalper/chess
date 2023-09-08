@@ -16,11 +16,21 @@ h1 {
 .checker {
     height: 100%; /* Ensure that each square takes up the full height */
     width: 100%; /* Ensure that each square takes up the full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flecker {
     height: 100%; /* Ensure that each square takes up the full height */
     width: 100%; /* Ensure that each square takes up the full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 4rem;
 }
 
 .checker:nth-child(odd)  {
