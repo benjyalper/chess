@@ -10,17 +10,25 @@ h1 {
     height: 40rem;
     width: 40rem;
     margin: 0 auto; /* Center the board horizontally */
-    border: 2px solid #711616;
-    gap: 7px;
+    /* border: 2px solid #711616; */
+    /* gap: 7px;
+    padding: 2px; */
+}
+
+.square {
+    height: 100%; /* Ensure that each square takes up the full height */
+    width: 100%; /* Ensure that each square takes up the full width */
+    display: flex;
+    /* border: 2px solid #711616; */
 }
 
 .checker {
     height: 100%; /* Ensure that each square takes up the full height */
-    width: 100; /* Ensure that each square takes up the full width */
+    width: 100%; /* Ensure that each square takes up the full width */
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #711616;
+    
 }
 
 .flecker {
