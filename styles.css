@@ -7,24 +7,26 @@ h1 {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    height: 40rem;
-    width: 40rem;
+    height: 90vh;
+    width: 45vw;
     margin: 0 auto; /* Center the board horizontally */
-    /* border: 2px solid #711616; */
+    border: 2px solid #711616;
     /* gap: 7px;
     padding: 2px; */
 }
 
 .square {
-    height: 100%; /* Ensure that each square takes up the full height */
-    width: 100%; /* Ensure that each square takes up the full width */
     display: flex;
-    /* border: 2px solid #711616; */
+    border: 2px solid #711616;
+}
+
+.square:hover {
+    border: 5px solid #f5e343;
+    /* box-shadow: 10px 10px 10px #e5f053; */
+    transition: all ease-in-out .3s;
 }
 
 .checker {
-    height: 100%; /* Ensure that each square takes up the full height */
-    width: 100%; /* Ensure that each square takes up the full width */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,8 +34,6 @@ h1 {
 }
 
 .flecker {
-    height: 100%; /* Ensure that each square takes up the full height */
-    width: 100%; /* Ensure that each square takes up the full width */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@ img {
 }
 
 .selectedSquare {
-    color: #711616;
+    border: 5px solid #f5e343;
 }
 
 .checker:nth-child(odd)  {
@@ -61,4 +61,8 @@ img {
 
 .flecker:nth-child(odd) {
     background-color: #f0f0f0; /* Light color for even squares */
+}
+
+.square:nth-child(11) {
+    background-color: blue;
 }
