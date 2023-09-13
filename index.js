@@ -1,41 +1,41 @@
-let selectedImage = null;
-let selectedSquare = null;
-let highlighted = false;
 
+const pieces = ['pawnA7', 'pawnB7']
+const move = function (pieceId) {
+    $(targetLocation).append(piece);
+    if (pieceId === pieces[0]) {
+        alert($(targetLocation).index());
+    }
+}
+let baseLocation = null;
+let targetLocation = null;
+let piece = null;
+let pieceSelected = false;
+let baseLocationSelected = false;
+let targetLocationSelected = false;
+
+
+let occupied = [];
+
+$('.board').on('click', 'img', function() {
+    piece = this;
+    baseLocation = this.closest('.square');  
+});
+
+$('.board').on('click', '.square', function() {
+    if (this !== baseLocation) {
+        targetLocation = this;
+        $(targetLocation).append(piece);
+        occupied.push(targetLocation);
+        // alert(occupied);
+        piece = null;
+    }
+});
+
+
+
+// const nthChild = 1;
 
 // $('.square').on('click', function() {
-//     const square = $(this).closest('.square');
-//     // $(square).css('margin', '5px');
-//     $(square).css('border', '5px solid yellow');
-//     // $(square).css('background-color', 'black');
+//     // alert($(this).index());
+//     move('pawnA7');
 // });
-
-
-
-$('.square').on('click', function(){
-    // selectedImage = $(this.closest('img'));
-    // $(selectedImage).css('height', '50px');
-    // location.reload();
-    // $(this).addClass('selectedSquare');
-    // highlighted = true;
-    // if (highlighted === false) {
-    //     $(this).addClass('selectedSquare');
-    //     highlighted = true;
-    // } '
-    $('img').on('click', function() {
-        selectedImage = $(this.closest('img'));
-    });
-
-    if (selectedImage !== null) {
-        selectedSquare = this.closest('.square');
-        $(selectedSquare).append(selectedImage);
-    }
-    
-    
-
-    // setTimeout (function () {
-    //     $(highlighted).removeClass('selectedSquare');
-    // }), 1000; 
-    // selectedImage = null;
-    alert(selectedImage)
-});
