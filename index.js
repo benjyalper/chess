@@ -1,9 +1,10 @@
 
 const equations = {
-    'pawn': 8,
+    'pawn': [7, 8, 9],
     'pawnB': 9,
-    'knight': [15, 17],
-    'bishop': 9
+    'knight': [6, -6, 10, -10, 15, -15, 17, -17],
+    'bishop': [7, -7, 14, -14, 21, -21, 28, -28, 35, -35, 42, -42, 49, -49,
+            9, -9, 18, -18, 27, -27, 36, -36, 45, -45, 54, -54, 63, -63]
 };
 
 
@@ -18,11 +19,22 @@ let pieceId = null;
 let baseLocationSelected = false;
 let targetLocationSelected = false;
 
-function move(equation) {
+
+function move(pieceName) {
     let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-        if (equations[equation] === moveEquation) {
-            $(targetLocation).append(piece);
+    let arr = []
+    for (let key in equations) {
+        if (key === 'knight') {
+            for (number in equations[pieceName]) {
+                let moveOptions = equations[pieceName][number];
+                arr.push(moveOptions);
+                for (option in arr) {
+                    if (arr[option] === moveEquation)
+                        $(targetLocation).append(piece);
+                }
+            }
         }
+    }       
 }
 
 

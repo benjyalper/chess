@@ -8,9 +8,9 @@ const equations = {
 const arr = [1, 2, 3];
 
 function move() {
-    for (let equation in equations) {
-        if (equation === 'knight') {
-            for (number in equations[equation]) {
+    for (let pieceName in equations) {
+        if (pieceName === 'knight') {
+            for (number in equations[pieceName]) {
                 let moveOptions = equations[equation][number];
                 console.log(moveOptions);
             }
