@@ -1,16 +1,10 @@
 
 const equations = {
-    'pawn': 8, 
-    'pawnB': 9
+    'pawn': 8,
+    'pawnB': 9,
+    'knight': [15, 17],
+    'bishop': 9
 };
-
-
-// function move() {
-//     const moveEquationn = $(targetLocation).index() - $(baseLocation).index();
-//     if (moveEquationn === 8) {
-//         alert(moveEquationn);
-//     }
-// }
 
 
 
@@ -26,9 +20,9 @@ let targetLocationSelected = false;
 
 function move(equation) {
     let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-    if (equations[equation] === moveEquation) {
-        $(targetLocation).append(piece);
-    }
+        if (equations[equation] === moveEquation) {
+            $(targetLocation).append(piece);
+        }
 }
 
 
@@ -44,11 +38,6 @@ $('.board').on('click', 'img', function() {
 $('.board').on('click', '.square', function() {
     if (this !== baseLocation) {
         targetLocation = this;
-        // let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-        // if (moveEquation === 9 || moveEquation === 7 || moveEquation === 9) {
-        //     $(targetLocation).append(piece);
-        // }
-        // occupied.push(targetLocation);
         move(pieceClass);
         move(pieceId);
         
@@ -56,11 +45,3 @@ $('.board').on('click', '.square', function() {
     }
 });
 
-
-
-// const nthChild = 1;
-
-// $('.square').on('click', function() {
-//     // alert($(this).index());
-//     move('pawnA7');
-// });

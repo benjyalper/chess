@@ -1,23 +1,35 @@
+body {
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+}
+
 h1 {
     text-align: center;
-    color: #711616;
+    color: #695738;
+}
+
+@media (max-width: 650px) {
+	.board {
+		height: 200px;
+        width: 200px;
+	}
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    height: 90vh;
-    width: 45vw;
+    height: 85vh;
+    width: 40vw;
     margin: 0 auto; /* Center the board horizontally */
-    border: 2px solid #711616;
+    border: 2px solid #8c806c;
+    margin-bottom: 40px;
     /* gap: 7px;
     padding: 2px; */
 }
 
 .square {
     display: flex;
-    border: 2px solid #711616;
+    border: 1px solid #8c806c;
 }
 
 .square:hover {
@@ -39,9 +51,14 @@ h1 {
     align-items: center;
 }
 
+.pawn {
+    width: 25px;
+}
+
 img {
     height: 4rem;
     z-index: 1;
+    width: 28px;
 }
 
 .selectedSquare {
@@ -49,19 +66,26 @@ img {
 }
 
 .checker:nth-child(odd)  {
-    background-color: #711616; /* Dark color for odd squares */
+    /* background-color: #004f8c; */
+    /* background-color: #711616; Dark color for odd squares */
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
 }
 
 .checker:nth-child(even) {
-    background-color: #f0f0f0; /* Light color for even squares */
+    background-color: #695738;
+    background-image: url("http://www.transparenttextures.com/patterns/wood-pattern.png");
+    /* background-color: #f0f0f0; Light color for even squares */
 }
 
 .flecker:nth-child(even)  {
-    background-color: #711616; /* Dark color for odd squares */
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+    /* background-color: #711616; Dark color for odd squares */
 }
 
 .flecker:nth-child(odd) {
-    background-color: #f0f0f0; /* Light color for even squares */
+    background-color: #695738;
+    background-image: url("http://www.transparenttextures.com/patterns/wood-pattern.png");
+    /* background-color: #f0f0f0; Light color for even squares */
 }
 
 .square:nth-child(11) {
