@@ -9,9 +9,10 @@ h1 {
 
 @media (max-width: 650px) {
     .board {
-        width: 100%; /* Set the width to 100% for smaller screens */
-        padding-bottom: 100%; /* Maintain a 1:1 aspect ratio */
-        max-width: none; /* Remove the max-width for smaller screens */
+        width: 250px;
+        height: 250px; /* Set the width to 100% for smaller screens */
+        /* padding-bottom: 100%; Maintain a 1:1 aspect ratio */
+        /* max-width: none; Remove the max-width for smaller screens */
     }
 
     img {
