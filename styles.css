@@ -8,18 +8,26 @@ h1 {
 }
 
 @media (max-width: 650px) {
-	.board {
-		height: 200px;
-        width: 200px;
-	}
+    .board {
+        width: 100%; /* Set the width to 100% for smaller screens */
+        padding-bottom: 100%; /* Maintain a 1:1 aspect ratio */
+        max-width: none; /* Remove the max-width for smaller screens */
+    }
+
+    img {
+        height: 2rem;
+        z-index: 1;
+        width: 14px;
+    }
 }
+
 
 .board {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    height: 85vh;
-    width: 40vw;
+    height: 550px;
+    width: 550px;
     margin: 0 auto; /* Center the board horizontally */
     border: 2px solid #8c806c;
     margin-bottom: 40px;
