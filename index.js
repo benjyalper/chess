@@ -17,6 +17,7 @@ let pieceClass = null;
 let pieceId = null;
 let baseLocationSelected = false;
 let targetLocationSelected = false;
+let bishopEquation = 7 * 1n;
 
 
 function move(pieceName) {
