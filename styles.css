@@ -9,8 +9,8 @@ h1 {
 
 @media (max-width: 650px) {
     .board {
-        width: 250px;
-        height: 250px; /* Set the width to 100% for smaller screens */
+        width: 200px;
+        height: 200px; /* Set the width to 100% for smaller screens */
         /* padding-bottom: 100%; Maintain a 1:1 aspect ratio */
         /* max-width: none; Remove the max-width for smaller screens */
     }
@@ -27,8 +27,8 @@ h1 {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    height: 550px;
-    width: 550px;
+    height: 600px;
+    width: 600px;
     margin: 0 auto; /* Center the board horizontally */
     border: 2px solid #8c806c;
     margin-bottom: 40px;

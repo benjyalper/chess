@@ -21,12 +21,12 @@ let targetLocationSelected = false;
 
 function move(pieceName) {
     let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-    let arr = []
+    let optionsArray = []
     for (number in equations[pieceName]) {
         let moveOptions = equations[pieceName][number];
-        arr.push(moveOptions);
-        for (option in arr) {
-            if (arr[option] === moveEquation)
+        optionsArray.push(moveOptions);
+        for (option in optionsArray) {
+            if (optionsArray[option] === moveEquation)
                 $(targetLocation).append(piece);
         }
     }
@@ -34,22 +34,10 @@ function move(pieceName) {
     
 
 
-// function move(pieceName) {
-//     let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-//     let arr = []
-//     for (let key in equations) {
-//         if (key === 'knight') {
-//             for (number in equations[pieceName]) {
-//                 let moveOptions = equations[pieceName][number];
-//                 arr.push(moveOptions);
-//                 for (option in arr) {
-//                     if (arr[option] === moveEquation)
-//                         $(targetLocation).append(piece);
-//                 }
-//             }
-//         } 
-//     }       
-// }
+function openMove() {
+    $(targetLocation).append(piece);
+}
+            
 
 
 let occupied = [];
@@ -66,7 +54,7 @@ $('.board').on('click', '.square', function() {
         targetLocation = this;
         move(pieceClass);
         move(pieceId);
-        
+        // openMove();        
         piece = null;
     }
 });
