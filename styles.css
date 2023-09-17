@@ -9,14 +9,14 @@ h1 {
 
 @media (max-width: 650px) {
     .board {
-        width: 90px;
-        height: 90px; /* Set the width to 100% for smaller screens */
+        width: 80px;
+        height: 80px; /* Set the width to 100% for smaller screens */
         /* padding-bottom: 100%; Maintain a 1:1 aspect ratio */
         /* max-width: none; Remove the max-width for smaller screens */
     }
 
     img {
-        height: 2rem;
+        height: 1rem;
         z-index: 1;
         width: 10px;
     }
