@@ -10,7 +10,8 @@ h1 {
 @media (max-width: 650px) {
     .board {
         width: 90px;
-        height: 90px; /* Set the width to 100% for smaller screens */
+        height: 90px;
+        /* Set the width to 100% for smaller screens */
         /* padding-bottom: 100%; Maintain a 1:1 aspect ratio */
         /* max-width: none; Remove the max-width for smaller screens */
     }
@@ -29,7 +30,8 @@ h1 {
     grid-template-rows: repeat(8, 1fr);
     height: 600px;
     width: 600px;
-    margin: 0 auto; /* Center the board horizontally */
+    margin: 0 auto;
+    /* Center the board horizontally */
     border: 2px solid #8c806c;
     margin-bottom: 40px;
     /* gap: 7px;
@@ -51,7 +53,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .flecker {
@@ -71,22 +73,22 @@ img {
 }
 
 .selectedSquare {
-    border: 5px solid #f5e343;
+    border: 5px solid #43a5f5;
 }
 
-.checker:nth-child(odd)  {
+.checker:nth-child(odd) {
     /* background-color: #004f8c; */
     /* background-color: #711616; Dark color for odd squares */
     background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
 }
 
 .checker:nth-child(even) {
-    background-color: #695738;
+    background-color: rgb(105, 87, 56);
     background-image: url("http://www.transparenttextures.com/patterns/wood-pattern.png");
     /* background-color: #f0f0f0; Light color for even squares */
 }
 
-.flecker:nth-child(even)  {
+.flecker:nth-child(even) {
     background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
     /* background-color: #711616; Dark color for odd squares */
 }
@@ -97,6 +99,6 @@ img {
     /* background-color: #f0f0f0; Light color for even squares */
 }
 
-.square:nth-child(11) {
+/* .square:nth-child(11) {
     background-color: blue;
-}
+} */
