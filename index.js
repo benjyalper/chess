@@ -2,8 +2,7 @@
 
 
 
-let baseLocation = null;
-let targetLocation = null;
+let selectedLocation = null;
 let piece = null;
 let pieceSelected = false;
 let pieceClass = null;
@@ -24,25 +23,31 @@ const locations = {
 
 
 function move() {
-    $(targetLocation).append(piece);
+    $(selectedLocation).append(piece);
 }
-
-let occupied = [];
 
 $('.board').on('click', 'img', function () {
     piece = this;
     pieceClass = $(this).attr("class");
-    baseLocation = this.closest('.square');
-    $(baseLocation).addClass('selectedSquare');
+    // selectedLocation = this.closest('.square');
+    // alert(pieceClass);
 });
 
 $('.board').on('click', '.square', function () {
-    alert($(this).index());
-    if (this !== baseLocation) {
-        $(baseLocation).removeClass('selectedSquare');
-        targetLocation = this;
-        move();
-        piece = null;
+    //location is the standrd chessboard location notation. type=string
+    const location = locations[$(this).index()];
+    if (selectedLocation === null && piece !== null) {
+        selectedLocation = this;
+        $(selectedLocation).addClass('selectedSquare');
+    } else {
+        $(selectedLocation).removeClass('selectedSquare');
+        selectedLocation = this;
+        $(selectedLocation).addClass('selectedSquare');
     }
+
+    if (piece !== null) {
+        move();
+    }
+
 });
 
