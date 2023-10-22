@@ -22,8 +22,9 @@ const locations = {
 
 function move() {
     $(selectedLocation).append(piece);
+    // alert('hello')
     targetLocation = selectedLocation;
-    alert(pieceClass + locations[$(targetLocation).index()])
+    // alert(pieceClass + locations[$(targetLocation).index()]);
 }
 
 $('.board').on('click', 'img', function () {

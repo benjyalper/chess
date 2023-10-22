@@ -40,7 +40,7 @@ h1 {
 
 .square {
     display: flex;
-    border: 1px solid #8c806c;
+    border: 5px solid transparent;
 }
 
 .square:hover {
@@ -62,9 +62,6 @@ h1 {
     align-items: center;
 }
 
-.pawn {
-    width: 25px;
-}
 
 img {
     height: 4rem;
