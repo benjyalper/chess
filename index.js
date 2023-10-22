@@ -1,8 +1,10 @@
 
+let moves = [];
 
 
 
 let selectedLocation = null;
+let targetLocation = null;
 let piece = null;
 let pieceSelected = false;
 let pieceClass = null;
@@ -18,12 +20,10 @@ const locations = {
     56: 'a1', 57: 'b1', 58: 'c1', 59: 'd1', 60: 'e1', 61: 'f1', 62: 'g1', 63: 'h1'
 };
 
-
-
-
-
 function move() {
     $(selectedLocation).append(piece);
+    targetLocation = selectedLocation;
+    alert(pieceClass + locations[$(targetLocation).index()])
 }
 
 $('.board').on('click', 'img', function () {
@@ -50,4 +50,5 @@ $('.board').on('click', '.square', function () {
     }
 
 });
+
 
