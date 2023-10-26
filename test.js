@@ -1,83 +1,45 @@
 
-const equations = {
-    'pawn': [7, 8, 9, -8, -9, -7],
-    'knight': [6, -6, 10, -10, 15, -15, 17, -17],
-    // 'bishop': [7, -7, 14, -14, 21, -21, 28, -28, 35, -35, 42, -42, 49, -49,
-    //         9, -9, 18, -18, 27, -27, 36, -36, 45, -45, 54, -54, 63, -63]
-    'bishop': [7, 14, 21, 28, 35, 42, 49, 56, 63, 9, 18, 27, 36, 45, 54, 72, 81, -7, -14, -21, -28, -35, -42, -49, -56, -63]
-};
-
-// const borders = [0, 1, 2, 3, 4, 5, 6, 7, 8, 16, 24, 32, 40, 48, 56]
-const borders = [`.square:eq(16)`]
+let moves = [];
 
 
 
-
-let baseLocation = null;
+let selectedLocation = null;
+let newSelectedLocation = null;
 let targetLocation = null;
 let piece = null;
 let pieceSelected = false;
+let locationSelected = false;
+let imgSelected = false;
 let pieceClass = null;
-let pieceId = null;
-let baseLocationSelected = false;
-let targetLocationSelected = false;
-let baseIndex = $(baseLocation).index();
-let potentialMoves = [];
-
-// let bishopEquation = 7 * 1n;
 
 
-function move(pieceName) {
-    let moveEquation = $(targetLocation).index() - $(baseLocation).index();
-}     
+const locations = {
+    0: 'a8', 1: 'b8', 2: 'c8', 3: 'd8', 4: 'e8', 5: 'f8', 6: 'g8', 7: 'h8',
+    8: 'a7', 9: 'b7', 10: 'c7', 11: 'd7', 12: 'e7', 13: 'f7', 14: 'g7', 15: 'h7',
+    16: 'a6', 17: 'b6', 18: 'c6', 19: 'd6', 20: 'e6', 21: 'f6', 22: 'g6', 23: 'h6',
+    24: 'a5', 25: 'b5', 26: 'c5', 27: 'd5', 28: 'e5', 29: 'f5', 30: 'g5', 31: 'h5',
+    32: 'a4', 33: 'b4', 34: 'c4', 35: 'd4', 36: 'e4', 37: 'f4', 38: 'g4', 39: 'h4',
+    40: 'a3', 41: 'b3', 42: 'c3', 43: 'd3', 44: 'e3', 45: 'f3', 46: 'g3', 47: 'h3',
+    48: 'a2', 49: 'b2', 50: 'c2', 51: 'd2', 52: 'e2', 53: 'f2', 54: 'g2', 55: 'h2',
+    56: 'a1', 57: 'b1', 58: 'c1', 59: 'd1', 60: 'e1', 61: 'f1', 62: 'g1', 63: 'h1'
+};
 
 
-let occupied = [1, 2, 3, 4];
+const move = function () {
+    $(targetLocation).append(piece);
+}
 
-$('.board').on('click', 'img', function() {
-    piece = this;
-    pieceClass = $(this).attr("class");
-    pieceId = $(this).attr("id");
-    baseLocation = this.closest('.square'); 
-    baseIndex = $(baseLocation).index();
-    for (let i = 0; i <= occupied.length; i++) {
-        let options = baseIndex +=7;
-        potentialMoves.push(`.square:eq(${options})`);
-        alert(potentialMoves)
-        $(potentialMoves[i]).css('border', '5px solid #b5f343');
-        if (potentialMoves[i] in borders) {//the problem is that potentialMoves[i] is in borders
-            break; 
-        }
+const selectPiece = function () {
+    $('.board').on('click', 'img', function () {
+        piece = this;
+        pieceClass = $(this).attr("class");
+    });
+}
 
-    }
-    
-
-    // if (pieceClass === 'bishop') {
-    //     let options = equations['bishop'];
-    //     for (let i = 0; i < options.length; i++) {
-    //         let highlighted = baseIndex + options[i];
-    //         let leftBoundry = baseIndex * 8;
-    //         let factor = 8 - baseIndex;
-    //         let rightBoundry = factor * 8 - 1;
-    //         let negativeLeftBoundry = baseIndex / 8;
-    //         // alert(highlighted)
-    //         if (options[i] % 7 === 0 && highlighted <= leftBoundry) {
-    //             $(`.square:eq(${highlighted})`).css('border', '5px solid #b5f343');
-    //         } else if (options[i] % 9 === 0 && highlighted <= rightBoundry) {
-    //             $(`.square:eq(${highlighted})`).css('border', '5px solid #b5f343');
-    //         } 
-    //     }
-    // }
-});
-
-
-$('.board').on('click', '.square', function() {
-    if (this !== baseLocation) {
+const selectLocation = function () {
+    $('.board').on('click', '.square', function () {
         targetLocation = this;
-        move(pieceClass);
-        move(pieceId);
-        // openMove();        
-        piece = null;
-    }
-});
+    });
+}
+
 

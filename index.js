@@ -1,13 +1,15 @@
-
 let moves = [];
-
-
-
 let selectedLocation = null;
 let targetLocation = null;
-let piece = null;
-let pieceSelected = false;
-let pieceClass = null;
+let selectedPiece = null;
+let selectedPieceClass = null;
+let targetPiece = null;
+let targetPieceClass = null;
+let selectedPieceColor = null; // Declare selectedPieceColor globally
+let targetPieceColor = null; // Declare targetPieceColor globally
+
+// Rest of your code remains unchanged
+
 
 const locations = {
     0: 'a8', 1: 'b8', 2: 'c8', 3: 'd8', 4: 'e8', 5: 'f8', 6: 'g8', 7: 'h8',
@@ -21,35 +23,93 @@ const locations = {
 };
 
 function move() {
-    $(selectedLocation).append(piece);
-    // alert('hello')
-    targetLocation = selectedLocation;
-    // alert(pieceClass + locations[$(targetLocation).index()]);
+    if ($(targetLocation).children().length > 0) {
+        const targetPieceColor = $(targetLocation).children().data("color");
+
+        // If there is a piece in the target square and it's an opponent's piece, remove it
+        if (targetPieceColor !== selectedPieceColor) {
+            $(targetLocation).children().remove();
+        } else {
+            // If the target piece is of the same color, do not remove it and reset selectedPiece
+            selectedPiece = null;
+            return;
+        }
+    }
+    // Move the selected piece to the target location
+    $(targetLocation).append(selectedPiece);
+    $(selectedLocation).empty(); // Remove the selected piece from its original position
 }
 
-$('.board').on('click', 'img', function () {
-    piece = this;
-    pieceClass = $(this).attr("class");
-    // selectedLocation = this.closest('.square');
-    // alert(pieceClass);
-});
+
+
+// Rest of your code...
+
+// Rest of your code...
+// ... (your existing code)
+
+// ... (your existing code)
 
 $('.board').on('click', '.square', function () {
-    //location is the standrd chessboard location notation. type=string
-    const location = locations[$(this).index()];
-    if (selectedLocation === null && piece !== null) {
+    if (selectedLocation === null) {
         selectedLocation = this;
         $(selectedLocation).addClass('selectedSquare');
     } else {
+        // Check if the clicked square is the same as the selected square
+        if (selectedLocation === this) {
+            // Clicked the same square again, do nothing
+            return;
+        }
+
         $(selectedLocation).removeClass('selectedSquare');
-        selectedLocation = this;
-        $(selectedLocation).addClass('selectedSquare');
+        targetLocation = this;
+        // Check if the target square is occupied by an opponent's piece
+        const targetPieceColor = $(targetLocation).children().data("color");
+        if (targetPieceColor !== selectedPieceColor) {
+            // Opponent's piece present, remove it
+            $(targetLocation).children().remove();
+        } else {
+            // Target square has a piece of the same color, do not remove it
+            // Reset selected piece and target piece
+            selectedPiece = null;
+            targetPiece = null;
+            selectedLocation = null;
+            return;
+        }
+        // Move the selected piece to the target location
+        $(targetLocation).append(selectedPiece);
+        $(selectedLocation).empty(); // Remove the selected piece from its original position
+        // Get the chess move (for example: "Pb4")
+        const pieceType = selectedPieceClass.charAt(0).toUpperCase();
+        const targetIndex = $(targetLocation).index();
+        const targetRow = 8 - Math.floor(targetIndex / 8);
+        const targetColumn = String.fromCharCode(97 + (targetIndex % 8));
+        const chessMove = pieceType + targetColumn + targetRow;
+        alert("Chess Move: " + chessMove);
+        selectedLocation = null; // Reset selected location
+        selectedPiece = null; // Reset selected piece
     }
-
-    if (piece !== null) {
-        move();
-    }
-
 });
 
+// ... (your existing code)
 
+
+$('.board').on('click', 'img', function () {
+    if (selectedPiece === null) {
+        selectedPiece = this;
+        selectedPieceClass = $(this).attr("class");
+        selectedPieceColor = $(this).data("color"); // Set selected piece color here
+        alert("Selected Piece Class: " + selectedPieceClass + "\nSelected Piece Color: " + selectedPieceColor);
+    } else {
+        // Check if the clicked piece is of the same color as the selected piece
+        if ($(this).data("color") === selectedPieceColor) {
+            // Clicked on a piece of the same color, set it as the new selected piece
+            selectedPiece = this;
+            selectedPieceClass = $(this).attr("class");
+            selectedPieceColor = $(this).data("color"); // Set selected piece color here
+            alert("Selected Piece Class: " + selectedPieceClass + "\nSelected Piece Color: " + selectedPieceColor);
+        } else {
+            // Clicked on a piece of a different color, do nothing
+            return;
+        }
+    }
+});
