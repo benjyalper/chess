@@ -1,3 +1,9 @@
+
+
+
+
+
+
 let moves = [];
 let selectedLocation = null;
 let targetLocation = null;
@@ -9,8 +15,6 @@ let selectedPieceColor = null; // Declare selectedPieceColor globally
 let targetPieceColor = null; // Declare targetPieceColor globally
 
 // Rest of your code remains unchanged
-
-
 const locations = {
     0: 'a8', 1: 'b8', 2: 'c8', 3: 'd8', 4: 'e8', 5: 'f8', 6: 'g8', 7: 'h8',
     8: 'a7', 9: 'b7', 10: 'c7', 11: 'd7', 12: 'e7', 13: 'f7', 14: 'g7', 15: 'h7',
@@ -39,15 +43,6 @@ function move() {
     $(targetLocation).append(selectedPiece);
     $(selectedLocation).empty(); // Remove the selected piece from its original position
 }
-
-
-
-// Rest of your code...
-
-// Rest of your code...
-// ... (your existing code)
-
-// ... (your existing code)
 
 $('.board').on('click', '.square', function () {
     if (selectedLocation === null) {
@@ -78,27 +73,45 @@ $('.board').on('click', '.square', function () {
         // Move the selected piece to the target location
         $(targetLocation).append(selectedPiece);
         $(selectedLocation).empty(); // Remove the selected piece from its original position
+
         // Get the chess move (for example: "Pb4")
         const pieceType = selectedPieceClass.charAt(0).toUpperCase();
         const targetIndex = $(targetLocation).index();
         const targetRow = 8 - Math.floor(targetIndex / 8);
         const targetColumn = String.fromCharCode(97 + (targetIndex % 8));
         const chessMove = pieceType + targetColumn + targetRow;
-        alert("Chess Move: " + chessMove);
-        selectedLocation = null; // Reset selected location
-        selectedPiece = null; // Reset selected piece
+
+        // Submit the chess move to OpenAI API
+        $.ajax({
+            url: 'YOUR_OPENAI_API_ENDPOINT', // Replace this with your actual OpenAI API endpoint
+            method: 'POST',
+            data: {
+                move: chessMove
+            },
+            success: function (response) {
+                // Handle OpenAI API response here
+                const aiResponse = response.choices[0].text.trim(); // Extract the AI response
+                moves.push(chessMove); // Add the move to the moves array
+                updateChatBox(chessMove, aiResponse); // Function to update chat box
+            },
+            error: function (error) {
+                // Handle error here
+                console.error('Error:', error);
+            }
+
+        });
+
+        // Reset selected location and selected piece after the move
+        selectedLocation = null;
+        selectedPiece = null;
     }
 });
-
-// ... (your existing code)
-
 
 $('.board').on('click', 'img', function () {
     if (selectedPiece === null) {
         selectedPiece = this;
         selectedPieceClass = $(this).attr("class");
         selectedPieceColor = $(this).data("color"); // Set selected piece color here
-        alert("Selected Piece Class: " + selectedPieceClass + "\nSelected Piece Color: " + selectedPieceColor);
     } else {
         // Check if the clicked piece is of the same color as the selected piece
         if ($(this).data("color") === selectedPieceColor) {
@@ -106,10 +119,20 @@ $('.board').on('click', 'img', function () {
             selectedPiece = this;
             selectedPieceClass = $(this).attr("class");
             selectedPieceColor = $(this).data("color"); // Set selected piece color here
-            alert("Selected Piece Class: " + selectedPieceClass + "\nSelected Piece Color: " + selectedPieceColor);
+
         } else {
             // Clicked on a piece of a different color, do nothing
             return;
         }
     }
 });
+
+// Function to update the chat box with user and AI moves
+function updateChatBox(userMove, aiResponse) {
+    // Update the chat box with user's move
+    $('#chat-box').append('<div>User: ' + userMove + '</div>');
+    // Update the chat box with AI's response
+    $('#chat-box').append('<div>AI: ' + aiResponse + '</div>');
+
+    alert('Moves Array: ' + JSON.stringify(moves));
+}
